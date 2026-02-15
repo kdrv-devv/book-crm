@@ -14,10 +14,9 @@ export const useAxios = () => {
     return http({
       url,
       method,
-      data: JSON.stringify(body),
+      data:body,
       headers: {
         "Content-Type": "application/json",
-        "Accsess-Control-Allow-Origin": true,
         ...headers,
       },
       params: {

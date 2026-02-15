@@ -3,16 +3,18 @@ import { useAxios } from "../../../useAxios";
 import { useSignIn } from "react-auth-kit";
 import { notificationApi } from "../../../../generics/notification";
 import type { ApiResponseType, UserType } from "../../../../@types";
+import { useNavigate } from "react-router-dom";
 
 
 export const useLoginMutation = () => {
     const axios = useAxios()
     const signIn = useSignIn()
     const nottify = notificationApi()
+    const navigete = useNavigate()
     return useMutation<ApiResponseType<UserType>, any, { phone: string, password: string }>({
         mutationKey: ["login"],
         mutationFn: (data: { phone: string, password: string }) => axios({
-            url: "/accounts/login",
+            url: "/accounts/login/",
             method: "POST",
             body: data
         }),
@@ -29,12 +31,14 @@ export const useLoginMutation = () => {
                 localStorage.setItem("accessToken", access)
                 localStorage.setItem("refreshToken", refresh)
                 nottify("loginSuccess")
+                navigete("/")
             }
 
         },
-        onError: (error: any) => {
-            console.log(error, "LOGIN ERROR")
+
+        onError: () => {
             nottify("loginError")
         }
+
     })
 }

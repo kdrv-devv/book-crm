@@ -18,3 +18,13 @@ export interface ApiResponseType<T>{
     success: boolean
 }
 
+
+// Sidebar types
+
+export interface SidebarItemsType{
+    title:string
+    path:string
+    Icon?:React.ComponentType<{ className?: string }>
+    onClick?:() => void
+    isOpen?:boolean
+}

@@ -1,8 +1,8 @@
 
-const HomeComponents = () => {
+const HomeComponent = () => {
   return (
     <div>HomeComponents</div>
   )
 }
 
-export default HomeComponents
+export default HomeComponent
